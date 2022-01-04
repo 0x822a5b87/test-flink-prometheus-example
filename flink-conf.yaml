@@ -1,0 +1,33 @@
+################################################################################
+jobmanager.rpc.address: jobmanager
+
+# The RPC port where the JobManager is reachable.
+jobmanager.rpc.port: 6123
+# The total process memory size for the JobManager.
+jobmanager.memory.process.size: 1600m
+# The total process memory size for the TaskManager.
+taskmanager.memory.process.size: 1728m
+# The number of task slots that each TaskManager offers. Each slot runs one parallel pipeline.
+taskmanager.numberOfTaskSlots: 10
+# The parallelism used for programs that did not specify and other parallelism.
+parallelism.default: 1
+
+
+# The failover strategy, i.e., how the job computation recovers from task failures.
+# Only restart tasks that may have been affected by the task failure, which typically includes
+# downstream tasks and potentially upstream tasks if their produced data is no longer available for consumption.
+jobmanager.execution.failover-strategy: region
+
+# Interval in milliseconds for refreshing the monitored directories.
+#historyserver.archive.fs.refresh-interval: 10000
+blob.server.port: 6124
+query.server.port: 6125
+
+
+##metrics
+metrics.reporter.promgateway.class: org.apache.flink.metrics.prometheus.PrometheusPushGatewayReporter
+metrics.reporter.promgateway.host: test.dc.data.woa.com
+metrics.reporter.promgateway.port: 9091
+metrics.reporter.promgateway.jobName: flink-metrics
+metrics.reporter.promgateway.randomJobNameSuffix: true
+metrics.reporter.promgateway.deleteOnShutdown: false

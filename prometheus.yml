@@ -1,0 +1,21 @@
+global:
+  scrape_interval:     60s
+  evaluation_interval: 60s
+ 
+scrape_configs:
+  - job_name: prometheus
+    static_configs:
+      - targets: ['test.dc.data.woa.com:9090']
+        labels:
+          instance: prometheus
+ 
+  - job_name: linux
+    static_configs:
+      - targets: ['test.dc.data.woa.com:9100']
+        labels:
+          instance: localhost
+  - job_name: 'pushgateway'
+    static_configs:
+      - targets: ['test.dc.data.woa.com:9091']
+        labels:
+          instance: 'pushgateway'
